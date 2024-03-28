@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const tarefasIniciais = [
+    "Jogar Lolzinho",
+    "Assistir Narutinho",
+    "Comprar cafezinho",
+  ];
+
+  const [listaTarefas, setListaTarefas] = useState(tarefasIniciais);
+
+  function adicionarTarefa() {
+    const novaTarefa = prompt("Digite uma nova tarefa");
+    if (novaTarefa) {
+      setListaTarefas([...listaTarefas, novaTarefa]);
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="conteudo">
+      <img src="img/logo.png" alt="logo" />
+
+      <div className="adicionar-tarefa">
+        <input type="text" placeholder="Digite a tarefa..." />
+        <button onClick={adicionarTarefa} className="botao-adicionar">
+          +
+        </button>
+      </div>
+
+      <ul className="lista-tarefas">
+        {tarefasIniciais.map((t) => (
+          <li className={`tarefa`}>
+            <ion-icon name="ellipse-outline"></ion-icon>
+            {t}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
