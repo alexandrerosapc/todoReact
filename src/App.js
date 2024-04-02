@@ -8,13 +8,20 @@ function App() {
   ];
 
   const [listaTarefas, setListaTarefas] = useState(tarefasIniciais);
+  const [terminadas, setTerminadas] = useState([])
 
   function adicionarTarefa() {
     const novaTarefa = prompt("Digite uma nova tarefa");
-    if (novaTarefa) {
-      setListaTarefas([...listaTarefas, novaTarefa]);
-    }
+    const novoArray = [...listaTarefas, novaTarefa]
+    setListaTarefas(novoArray);
   }
+
+  function terminarTarefa(t) {
+    const novoArray = [...terminadas, t]
+    setTerminadas(novoArray)
+    alert(`Só  faltam ${listaTarefas.length - novoArray.length} tarefas`)
+  }
+
   return (
     <div className="conteudo">
       <img src="img/logo.png" alt="logo" />
@@ -27,9 +34,9 @@ function App() {
       </div>
 
       <ul className="lista-tarefas">
-        {tarefasIniciais.map((t) => (
-          <li className={`tarefa`}>
-            <ion-icon name="ellipse-outline"></ion-icon>
+        {listaTarefas.map((t) => (
+          <li onClick={() => terminarTarefa(t)} className={`tarefa ${terminadas.includes(t) ? "finalizada" : ""} `} key={t}>
+            <ion-icon name={terminadas.includes(t) ? "checkmark-circle" : "ellipse-outline" }></ion-icon>
             {t}
           </li>
         ))}
