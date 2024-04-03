@@ -9,11 +9,16 @@ function App() {
 
   const [listaTarefas, setListaTarefas] = useState(tarefasIniciais);
   const [terminadas, setTerminadas] = useState([])
+  const [textoTarefa, setTextoTarefa] = useState("")
+
+  function salvarTexto(event) {
+    setTextoTarefa(event.target.value)
+  }
 
   function adicionarTarefa() {
-    const novaTarefa = prompt("Digite uma nova tarefa");
-    const novoArray = [...listaTarefas, novaTarefa]
+    const novoArray = [...listaTarefas,textoTarefa]
     setListaTarefas(novoArray);
+    setTextoTarefa("")
   }
 
   function terminarTarefa(t) {
@@ -27,7 +32,12 @@ function App() {
       <img src="img/logo.png" alt="logo" />
 
       <div className="adicionar-tarefa">
-        <input type="text" placeholder="Digite a tarefa..." />
+        <input 
+        type="text" 
+        placeholder="Digite a tarefa..." 
+        onChange={salvarTexto}
+        value={textoTarefa}
+        />
         <button onClick={adicionarTarefa} className="botao-adicionar">
           +
         </button>
