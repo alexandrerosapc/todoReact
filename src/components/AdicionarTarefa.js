@@ -1,5 +1,5 @@
 export default function AdicionarTarefa({ listaTarefas, textoTarefa, setListaTarefas, setTextoTarefa }) {
-    
+
     function adicionarTarefa() {
         const novoArray = [...listaTarefas, textoTarefa]
         setListaTarefas(novoArray);
@@ -11,7 +11,7 @@ export default function AdicionarTarefa({ listaTarefas, textoTarefa, setListaTar
     }
     return (
 
-        <div div className="adicionar-tarefa" >
+        <div className="adicionar-tarefa" >
             <input
                 type="text"
                 placeholder="Digite a tarefa..."
