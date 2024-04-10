@@ -2,6 +2,8 @@ import { useState } from "react";
 import Logo from "./components/Logo";
 import AdicionarTarefa from "./components/AdicionarTarefa";
 import ListaTarefas from "./components/ListaTarefas";
+import styled from "styled-components";
+import GlobalStyle from "./css/GlobalStyle";
 
 function App() {
   const tarefasIniciais = [
@@ -16,21 +18,33 @@ function App() {
 
 
   return (
-    <div className="conteudo">
+    <Conteudo>
+      <GlobalStyle />
+
       <Logo />
+
       <AdicionarTarefa
         listaTarefas={listaTarefas}
         textoTarefa={textoTarefa}
         setListaTarefas={setListaTarefas}
         setTextoTarefa={setTextoTarefa}
       />
+
       <ListaTarefas
         setTerminadas={setTerminadas}
         terminadas={terminadas}
         listaTarefas={listaTarefas}
       />
-    </div>
+    </Conteudo>
   );
 }
 
 export default App;
+
+
+const Conteudo = styled.div`
+  max-width: 450px;
+  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+`
