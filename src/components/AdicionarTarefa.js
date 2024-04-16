@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { useState } from "react";
 
-export default function AdicionarTarefa({ listaTarefas, textoTarefa, setListaTarefas, setTextoTarefa }) {
+export default function AdicionarTarefa({ listaTarefas, setListaTarefas }) {
+    const [textoTarefa, setTextoTarefa] = useState("")
 
     function adicionarTarefa() {
         const novoArray = [...listaTarefas, textoTarefa]
